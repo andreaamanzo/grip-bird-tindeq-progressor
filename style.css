@@ -3,7 +3,8 @@
   font-family:
     system-ui,
     -apple-system,
-    Segoe UI,
+    BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
 }
 
@@ -40,6 +41,8 @@ p {
   line-height: 1.45;
 }
 
+/* Toolbar e controlli */
+
 .toolbar,
 .stats,
 .controls {
@@ -52,11 +55,14 @@ p {
 button {
   border: 0;
   border-radius: 10px;
-  padding: 11px 15px;
+  padding: 12px 16px;
+  min-height: 44px;
+  font: inherit;
   font-weight: 700;
   background: #2f80ed;
   color: white;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 button.secondary {
@@ -68,21 +74,25 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Canvas */
+
+.game-wrap {
+  position: relative;
+  width: 100%;
+}
+
 canvas {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 8 / 7;
   background: #8ed8f5;
   border: 3px solid #40516c;
   border-radius: 14px;
   touch-action: manipulation;
 }
 
-.game-wrap {
-  position: relative;
-  width: 100%;
-}
+/* Pulsante inizio gioco */
 
 .start-overlay {
   position: absolute;
@@ -107,7 +117,6 @@ canvas {
 
 .start-overlay:focus-visible {
   outline: 3px solid #fff;
-
   outline-offset: 3px;
 }
 
@@ -120,6 +129,8 @@ canvas {
   display: none;
 }
 
+/* Pannelli */
+
 .panel {
   background: #1c293d;
   border: 1px solid #34445e;
@@ -127,17 +138,28 @@ canvas {
   padding: 12px;
 }
 
+/* Statistiche */
+
 .stats {
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  min-width: 0;
+  font-size: 0.9rem;
 }
 
 .stat strong {
   display: block;
+  margin-top: 3px;
   font-size: 1.2rem;
   font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
 }
 
-\#status {
+#status {
   min-height: 1.3em;
   color: #b9d5ff;
 }
@@ -146,6 +168,8 @@ small {
   color: #9fb0c9;
   line-height: 1.45;
 }
+
+/* Indicatore forza */
 
 .force-meter {
   height: 12px;
@@ -162,6 +186,8 @@ small {
   background: #f59e0b;
   transition: width 70ms linear;
 }
+
+/* Configurazione */
 
 .config-note {
   display: flex;
@@ -202,7 +228,7 @@ code {
 .control-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 20px;
+  gap: 18px 20px;
 }
 
 .tune {
@@ -221,12 +247,120 @@ code {
 .tune input {
   display: block;
   width: 100%;
+  min-height: 32px;
   margin: 10px 0 4px;
   accent-color: #2f80ed;
+  cursor: pointer;
 }
 
+/* Tablet */
+
+@media (max-width: 700px) {
+  main {
+    padding: 14px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Smartphone */
+
 @media (max-width: 560px) {
+  main {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 1.35rem;
+  }
+
+  p {
+    font-size: 0.88rem;
+  }
+
+  .toolbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .toolbar button {
+    width: 100%;
+    padding: 12px 8px;
+    font-size: 0.88rem;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 10px;
+  }
+
+  .stat {
+    font-size: 0.82rem;
+  }
+
+  .stat strong {
+    font-size: 1.15rem;
+  }
+
+  .panel {
+    padding: 11px;
+  }
+
+  .game-wrap canvas {
+    border-width: 2px;
+    border-radius: 10px;
+  }
+
+  .start-overlay {
+    top: 10px;
+    left: 10px;
+    min-width: 110px;
+    padding: 11px 14px;
+    font-size: 0.9rem;
+  }
+
+  .config-heading {
+    align-items: flex-start;
+  }
+
+  .config-heading button {
+    width: 100%;
+  }
+
   .control-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tune {
+    font-size: 0.9rem;
+  }
+
+  .tune input {
+    min-height: 40px;
+  }
+
+  .tune small {
+    font-size: 0.8rem;
+  }
+}
+
+/* Smartphone molto piccoli */
+
+@media (max-width: 360px) {
+  main {
+    padding: 8px;
+  }
+
+  .stats {
+    gap: 12px 6px;
+  }
+
+  .stat strong {
+    font-size: 1.05rem;
   }
 }

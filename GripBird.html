@@ -1,0 +1,153 @@
+<!doctype html>
+
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Grip Bird — Tindeq Progressor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main>
+      <h1>Grip Bird</h1>
+      <p>
+        Controlla il volo con la forza del Tindeq Progressor. Collega il
+        dinamometro e inizia a giocare.
+      </p>
+
+      <div class="toolbar">
+        <button id="connect">Connetti Tindeq</button>
+        <button id="disconnect" class="secondary" disabled>Disconnetti</button>
+      </div>
+      <p id="status">
+        Pronto. Premi “Connetti Tindeq” con il Progressor acceso.
+      </p>
+
+      <div class="panel stats">
+        <div class="stat">Forza<strong id="force">0.00 kg</strong></div>
+        <div class="stat">Spinta<strong id="lift">0%</strong></div>
+        <div class="stat">Punteggio<strong id="score">0</strong></div>
+        <div class="stat">Record<strong id="best">0</strong></div>
+        <div class="stat">Stato<strong id="state">Pronto</strong></div>
+      </div>
+
+      <div class="panel">
+        <div class="stat">Forza applicata rispetto al massimo</div>
+        <div class="force-meter"><div id="forceBar"></div></div>
+      </div>
+
+      <div class="game-wrap">
+        <canvas
+          id="game"
+          width="800"
+          height="700"
+          aria-label="Gioco Grip Bird"
+        ></canvas>
+
+        <button id="start" class="start-overlay" type="button">▶ Inizia</button>
+      </div>
+
+      <section class="panel config-panel" aria-label="Controlli di gioco">
+        <div class="config-heading">
+          <div>
+            <strong>Personalizza la tua sfida</strong>
+            <small>
+              Regola al volo sensibilità, forza e risposta del gioco per trovare
+              il giusto equilibrio e adattare ogni partita alle tue
+              caratteristiche
+            </small>
+          </div>
+          <button id="resetConfig" class="secondary" type="button">
+            Ripristina
+          </button>
+        </div>
+
+        <div class="control-grid">
+          <label class="tune">
+            Sensibilità forza <output id="maxKgOut"></output>
+            <input id="maxKgInput" type="range" min="2" max="100" step="1" />
+            <small>
+              Kg per raggiungere la spinta massima: meno kg = più sensibile.
+            </small>
+          </label>
+
+          <label class="tune">
+            Curva di risposta <output id="exponentOut"></output>
+            <input
+              id="exponentInput"
+              type="range"
+              min="0.35"
+              max="1.5"
+              step="0.05"
+            />
+            <small>
+              Valori sotto 1 rendono più percepibili anche trazioni leggere.
+            </small>
+          </label>
+
+          <label class="tune">
+            Accelerazione di spinta <output id="liftOut"></output>
+            <input id="liftInput" type="range" min="300" max="2200" step="25" />
+            <small>Intensità massima dell'effetto della trazione.</small>
+          </label>
+
+          <label class="tune">
+            Gravità <output id="gravityOut"></output>
+            <input
+              id="gravityInput"
+              type="range"
+              min="200"
+              max="1000"
+              step="10"
+            />
+            <small>Quanto l'uccello viene tirato verso il basso dalla gravità.</small>
+          </label>
+
+          <label class="tune">
+            Velocità massima salita <output id="riseOut"></output>
+            <input id="riseInput" type="range" min="80" max="800" step="10" />
+            <small>
+              Limita la velocità verso l'alto anche con trazione forte.
+            </small>
+          </label>
+
+          <label class="tune">
+            Velocità massima caduta <output id="fallOut"></output>
+            <input id="fallInput" type="range" min="100" max="900" step="10" />
+            <small>Limita la velocità verso il basso data dalla gravità</small>
+          </label>
+
+          <label class="tune">
+            Distanza tra i tubi <output id="pipeIntervalOut"></output>
+            <input
+              id="pipeIntervalInput"
+              type="range"
+              min="1"
+              max="3"
+              step="0.1"
+            />
+            <small>Aumenta la distanza tra i tubi (in secondi)</small>
+          </label>
+
+          <label class="tune">
+            Larghezza dei tubi <output id="pipeWidthOut"></output>
+            <input
+              id="pipeWidthInput"
+              type="range"
+              min="60"
+              max="120"
+              step="1"
+            />
+            <small>Aumenta la larghezza dei tubi</small>
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

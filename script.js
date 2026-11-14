@@ -5,15 +5,15 @@
 
   const CONFIG = {
     physics: {
-      gravity: 600, // Accelerazione verso il basso (px/s²)
+      gravity: 550, // Accelerazione verso il basso (px/s²)
       liftAcceleration: 1400, // Spinta massima verso l'alto (px/s²)
-      maxFallSpeed: 700, // Velocità massima di caduta (px/s)
-      maxRiseSpeed: 300, // Velocità massima di salita (px/s)
+      maxFallSpeed: 650, // Velocità massima di caduta (px/s)
+      maxRiseSpeed: 400, // Velocità massima di salita (px/s)
     },
     force: {
-      maxKg: 25, // Kg necessari per ottenere il 100% della spinta
+      maxKg: 30, // Kg necessari per ottenere il 100% della spinta
       deadZoneKg: 0.3, // Piccole letture ignorate (kg)
-      responseExponent: 0.5, // 1 = lineare; >1 = serve più forza all'inizio
+      responseExponent: 0.8, // 1 = lineare; >1 = serve più forza all'inizio
       smoothing: 0.7, // Filtraggio: 0 = lento? No: 0.1 stabile, 0.6 rapido
     },
     gameplay: {
@@ -497,13 +497,7 @@
    */
 
   const tuning = [
-    ["maxKgInput", "maxKg", "maxKgOut", (v) => `${Number(v).toFixed(1)} kg`],
-    [
-      "pipeIntervalInput",
-      "pipeInterval",
-      "pipeIntervalOut",
-      (v) => `${Number(v).toFixed(2).replace(".", ",")} s`,
-    ],
+    ["maxKgInput", "maxKg", "maxKgOut", (v) => `${v} kg`],
     [
       "exponentInput",
       "responseExponent",
@@ -514,6 +508,13 @@
     ["gravityInput", "gravity", "gravityOut", (v) => `${v} px/s²`],
     ["riseInput", "maxRiseSpeed", "riseOut", (v) => `${v} px/s`],
     ["fallInput", "maxFallSpeed", "fallOut", (v) => `${v} px/s`],
+    [
+      "pipeIntervalInput",
+      "pipeInterval",
+      "pipeIntervalOut",
+      (v) => `${Number(v).toFixed(2).replace(".", ",")} s`,
+    ],
+    ["pipeWidthInput", "pipeWidth", "pipeWidthOut", (v) => `${v} px`],
   ];
 
   const initialTuning = {};

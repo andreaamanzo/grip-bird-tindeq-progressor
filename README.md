@@ -1,6 +1,6 @@
 # Grip Bird — Tindeq Progressor
 
-Un gioco ispirato a Flappy Bird, controllato attraverso la forza di trazione misurata dal Tindeq Progressor.
+Un gioco ispirato a Flappy Bird, controllato attraverso la forza di trazione misurata dal [Tindeq Progressor](https://tindeq.com/product/progressor/).
 
 Allena la tua forza di presa divertendoti: tira il dinamometro per far volare l'uccellino, evita gli ostacoli e cerca di ottenere il punteggio più alto!
 
